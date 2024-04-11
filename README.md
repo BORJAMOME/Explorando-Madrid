@@ -67,6 +67,43 @@ population %>%
     axis.line = element_line(color = "#f6f0ec"), 
     text = element_text(family = "Oswald", size = 15, color = "black") 
   )
-```
-<img width="1272" alt="Screenshot 2024-04-11 at 15 34 04" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8db5be03-5e0e-416c-a834-2c8dda0e271d">
 
+```
+<img width="1272" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/ad4108be-2f1f-4890-bcd1-a06c46dea671">
+
+
+--------------
+--------------
+--------------
+```r
+# Ordered levels
+age_population$Age <- ordered(age_population$Age, levels=c("0-4", "5-9", "10-14", "15-19",
+                                                   "20-24", "25-29", "30-34", "35-39",
+                                                   "40-44", "45-49", "50-54", "55-59",
+                                                   "60-64", "65-69", "70-74", "75-79",
+                                                   "80-84", "85-89", "90-94", "95-99"  ,"100&more"))
+
+ggplot(data=age_population, aes(x=Age, fill=Gender)) +
+  geom_bar(data=filter(age_population, Gender=="Female"), aes(y=Number), stat="identity") + 
+  geom_bar(data=filter(age_population, Gender=="Male"), aes(y=Number*(-1)), stat="identity") +
+  scale_y_continuous(breaks=seq(-100000, 100000, 20000), 
+                     labels=comma(abs(seq(-100000, 100000, 20000)))) + 
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  labs(x="Age", y="Population", title="Population by age (2023)") +
+  coord_flip() +
+  theme_minimal() + # Cambiado a theme_minimal()
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA)
+  ) +
+  theme(
+    panel.border = element_blank(),
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black") 
+  )
+```
+<img width="1274" alt="2 Age_population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8862e89c-8567-4e89-b480-7e890dc0c2b8">
+
+--------------
+--------------
+--------------
