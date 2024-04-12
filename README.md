@@ -104,6 +104,17 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
 ```
 <img width="1274" alt="2 Age_population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8862e89c-8567-4e89-b480-7e890dc0c2b8">
 
+
 --------------
 --------------
 --------------
+
+![Madrid_district_map](https://github.com/BORJAMOME/Madrid_I/assets/19588053/5776fd01-d1bb-4695-b02c-e6313afc5507)
+
+
+
+
+
+
+
+
