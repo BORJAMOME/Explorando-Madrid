@@ -322,6 +322,7 @@ sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to",
 
 
 ```r
+
 # Nodes
 nodes <- data.frame(label = unique(c(immigrants_emigrants_by_destination2$from, immigrants_emigrants_by_destination2$to)))
 nodes$id <- 1:nrow(nodes)
@@ -351,9 +352,11 @@ edges_d3 <- mutate(edges, from=from-1, to=to-1)
 # sankeyNetwork - Emigrants destination
 sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to", 
               NodeID="label", Value="weight", fontSize=16, unit="Letter(s)")
-
-´´´´
-
-<img width="1260" alt="9 immigrants_destination_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/1367187f-a7c3-4182-bddd-b18c8a3b383a">
+```
 
 
+<img width="1260" alt="9 immigrants_destination_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/b62ee49c-92b7-41fd-a883-a527f35c0360">
+
+--------------
+--------------
+--------------
