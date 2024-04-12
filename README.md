@@ -28,6 +28,7 @@ showtext_auto()
 
 # Read the data 
 population <- read.csv("../input/population.csv", sep=",", fileEncoding="UTF-8")
+age_population <- read.csv("../input/population.csv", sep=",", fileEncoding="UTF-8")
 immigrants_emigrants_by_sex <- read.csv("../input/immigrants_emigrants_by_sex.csv", sep=",", fileEncoding="UTF-8")
 immigrants_emigrants_by_age <- read.csv("../input/immigrants_emigrants_by_age.csv", sep=",", fileEncoding="UTF-8")
 immigrants_emigrants_by_destination <- read.csv("../input/immigrants_emigrants_by_destination.csv", sep=",", fileEncoding="UTF-8")
@@ -46,12 +47,12 @@ Population
 ```r
 # Population by year 
 
-population$date <- ordered(population$date, levels=c(2018,2019,2020,2021,2022,2023))
+population$Year <- ordered(population$Year, levels=c(2018,2019,2020,2021,2022,2023))
 population %>%
-  group_by(date, Gender) %>%
+  group_by(Year, Gender) %>%
   summarise(count=sum(Number)) %>%
   mutate(percent=paste0(round((count/sum(count))*100, 2), "%")) %>%
-  ggplot(aes(x=date, y=count)) +
+  ggplot(aes(x=Year, y=count)) +
   geom_bar(stat="identity", aes(fill=Gender)) +
   geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5), size = 3) +
   scale_y_continuous(labels=comma) +
@@ -69,7 +70,7 @@ population %>%
   )
 
 ```
-<img width="1272" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/ad4108be-2f1f-4890-bcd1-a06c46dea671">
+<img width="1266" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/13a8408b-e7b9-4dd3-b1a0-47a9261a3e16">
 
 
 --------------
@@ -110,6 +111,32 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
 --------------
 
 ![Madrid_district_map](https://github.com/BORJAMOME/Madrid_I/assets/19588053/5776fd01-d1bb-4695-b02c-e6313afc5507)
+
+```r
+# Population by year 
+population %>%
+  filter(Year=="2023") %>%
+  group_by(District, Gender) %>%
+  summarise(count = sum(Number)) %>%
+  mutate(percent = paste0(round((count / sum(count)) * 100, 2), "%")) %>%
+  ggplot(aes(x = reorder(District, count), y = count)) +
+  coord_flip() +
+  geom_bar(stat = "identity", aes(fill = Gender)) +
+  geom_text(aes(label = percent, group = Gender), position = position_stack(vjust = 0.5), size= 3) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  scale_y_continuous(labels = comma) +
+  labs(x = "District", y = "Population", title = "Population by District (2023)") +
+  theme_minimal() + 
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA) 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black")
+  )
+````
 
 
 
