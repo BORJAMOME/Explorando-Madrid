@@ -1,0 +1,39 @@
+from,to,weight
+Madrid,Andalusia,8477
+Madrid,Aragon,1182
+Madrid,Asturias,1282
+Madrid,Balearic Islands,1683
+Madrid,Canary Islands,2784
+Madrid,Cantabria,1078
+Madrid,Castilla y Leon,6646
+Madrid,Castilla - La Mancha,11627
+Madrid,Catalonia,4898
+Madrid,Extremadura,6305
+Madrid,Galicia,1545
+Madrid,Comunidad de Madrid,3148
+Madrid,Region of Murcia,55217
+Madrid,Navarra,1721
+Madrid,Valencian Community,553
+Madrid,Basque Country,1552
+Madrid,La Rioja,337
+Madrid,Ceuta y Melilla,139
+Madrid,Abroad,10064
+Andalusia,Madrid,8509
+Aragon,Madrid,1375
+Asturias,Madrid,1383
+Balearic Islands,Madrid,1573
+Canary Islands,Madrid,2725
+Cantabria,Madrid,904
+Castilla y Leon,Madrid,6746
+Castilla - La Mancha,Madrid,9577
+Catalonia,Madrid,5293
+Valencian Community,Madrid,4805
+Extremadura,Madrid,1886
+Galicia,Madrid,2833
+Comunidad de Madrid,Madrid,33968
+Region of Murcia,Madrid,1498
+Navarra,Madrid,755
+Basque Country,Madrid,1885
+La Rioja,Madrid,396
+Ceuta y Melilla,Madrid,349
+Abroad,Madrid,73422
