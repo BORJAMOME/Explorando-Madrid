@@ -113,7 +113,7 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
 ![Madrid_district_map](https://github.com/BORJAMOME/Madrid_I/assets/19588053/5776fd01-d1bb-4695-b02c-e6313afc5507)
 
 ```r
-# Population by year 
+# Population by district (2023)
 population %>%
   filter(Year=="2023") %>%
   group_by(District, Gender) %>%
@@ -137,9 +137,108 @@ population %>%
     text = element_text(family = "Oswald", size = 15, color = "black")
   )
 ````
+<img width="1270" alt="3 population_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/fb16c1f4-8ada-4112-920c-70d33adb48c3">
 
+--------------
+--------------
+--------------
+```r
+# Population by neighborhood (2023)
+population %>%
+  filter(Year=="2023") %>%
+  group_by(Neighborhood, Gender) %>%
+  summarise(count = sum(Number)) %>%
+  mutate(percent = paste0(round((count / sum(count)) * 100, 2), "%")) %>%
+  ggplot(aes(x = reorder(Neighborhood, count), y = count)) +
+  coord_flip() +
+  geom_bar(stat = "identity", aes(fill = Gender)) +
+  geom_text(aes(label = percent, group = Gender), position = position_stack(vjust = 0.5), size= 1.5) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  scale_y_continuous(labels = comma) +
+  labs(x = "Neighborhood", y = "Population", title = "Population by Neighborhood (2023)") +
+  theme_minimal() + 
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA) 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 6, color = "black")
+  )
+```
+<img width="1268" alt="4 population_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/0946fe58-b462-4d41-8830-30da24d1ca95">
 
+# Immigration and emigration
+--------------
+--------------
+--------------
+```r
+immigrants_emigrants_by_sex <- gather(immigrants_emigrants_by_sex, `Immigrants/Emigrants`,
+                                      value, Immigrants:Emigrants, na.rm=TRUE)
+immigrants_emigrants_by_sex %>%
+  group_by(Gender, `Immigrants/Emigrants`, Year) %>%
+  summarise(count = sum(value)) %>%
+  ggplot(aes(x = `Immigrants/Emigrants`, y = count, fill = Gender)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  facet_grid(~Year) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  labs(y = "Population", title = "Immigration and Emigration by Year (2017-2021)") 
+  scale_y_continuous(labels = comma) +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 10, color = "black"), 
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title.x = element_blank()
+  )
+````
+<img width="1271" alt="5 immi_emi_sex" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/d1c5dc6c-c9e2-4bed-a6f6-524f27913ef7">
+--------------
+--------------
+--------------
 
+```r
+
+immigrants_emigrants_by_age <- gather(immigrants_emigrants_by_age, `Immigrants/Emigrants`, 
+                                      value, Immigrants:Emigrants, na.rm=TRUE)
+
+# Ordered levels
+immigrants_emigrants_by_age$Age <- ordered(immigrants_emigrants_by_age$Age, 
+                                           levels=c("0-4", "5-9", "10-14", "15-19",
+                                                    "20-24", "25-29", "30-34", "35-39",
+                                                    "40-44", "45-49", "50-54", "55-59",
+                                                    "60-64", "65&more"))
+# Immigration and emigration by age (2021)
+
+immigrants_emigrants_by_age_2021 <- immigrants_emigrants_by_age %>%
+  filter(Year=="2021")
+
+ggplot(data=immigrants_emigrants_by_age_2021, aes(x=Age, fill=`Immigrants/Emigrants`)) +
+  geom_bar(data=filter(immigrants_emigrants_by_age_2021, `Immigrants/Emigrants`=="Immigrants"), 
+           aes(y=value), stat="identity") + 
+  geom_bar(data=filter(immigrants_emigrants_by_age_2021, `Immigrants/Emigrants`=="Emigrants"), 
+           aes(y=value*(-1)), stat="identity") +
+  scale_y_continuous(breaks=seq(-30000, 30000, 5000), labels=comma(abs(seq(-30000, 30000, 5000)))) + 
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  labs(x="Age", y="Population", title="Immigration and emigration by age (2021)") +
+  coord_flip() +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA),
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), # 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black"), 
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title.x = element_blank()
+  )
+
+```
+<img width="1267" alt="6 immi_emi_age" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/0512b055-d29d-4ff6-9704-510c5bc8d2aa">
 
 
 
