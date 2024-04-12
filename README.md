@@ -14,7 +14,7 @@ To begin, we'll need to load necessary libraries and import the datasets.
 library(tidyverse)
 library(knitr)
 library(scales)
-library(wordcloud)
+library(wordcloud2)
 library(visNetwork)
 library(networkD3)
 library(knitr)
@@ -360,3 +360,312 @@ sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to",
 --------------
 --------------
 --------------
+
+```r
+# Immigrants by nationality
+
+immigrants_by_nationality %>%
+  filter(Year == 2020, Nationality != "Spain") %>%
+  group_by(Nationality) %>%
+  summarise(count = sum(Number)) %>%
+  top_n(25, count) %>%
+  
+  ggplot(aes(x = fct_reorder(Nationality, count), y = count)) +
+  geom_col(aes(fill = count), show.legend = FALSE) +
+  geom_text(aes(label = count), vjust = 0.5) +
+  scale_y_continuous(labels = comma) +
+  scale_fill_gradient(low = "#D2E3C8", high = "#86A789") +
+  labs(x = "Nationality", y = "Population", title = "Immigrants by nationality (2020)") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+    panel.border = element_blank(), 
+    panel.grid.major = element_blank(), 
+    axis.line = element_blank(), 
+    text = element_text(family = "Oswald", size = 15, color = "black"), 
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title.x = element_blank()
+  ) + 
+  coord_flip()
+````
+<img width="1260" alt="10 immigrants_nationality" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/cbb4d93b-8944-4247-9a29-837ce258a016">
+
+--------------
+--------------
+--------------
+```r
+# Births by year
+
+births %>%
+  group_by(Year, Gender) %>%
+  summarise(Count=sum(Number)) %>%
+  mutate(percent=paste0(round((Count/sum(Count))*100, 2), "%")) %>%
+  filter(Year %in% c(2018, 2019)) %>%
+  mutate(Year = factor(Year, levels = c(2018, 2019))) %>%
+  ggplot(aes(x=Year, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position="stack") + 
+  geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5)) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  labs(x="Year", y="Births", title="Births by year (2018-2019)") +
+  scale_y_continuous(labels=comma) +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA),
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black") 
+  )
+````
+<img width="1275" alt="11 births_by_year" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/aa9b04ff-d6c0-461d-b704-57a72cafd3bb">
+
+
+```r
+# Births by district (2017)
+births %>%
+  filter(Year=="2019") %>%
+  group_by(District, Gender) %>%
+  summarise(count=sum(Number)) %>%
+  mutate(percent=paste0(round((count/sum(count))*100, 2), "%")) %>%
+  ggplot(aes(x=reorder(District, count), y=count)) +
+  geom_bar(stat="identity", aes(fill=Gender)) +
+  geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5), size=3) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  scale_y_continuous(breaks=seq(0, 5000, 500), labels=comma) +
+  labs(x="District", y="Births", title="Births by district (2019)") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(),
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black") 
+  ) + 
+  coord_flip()
+````
+<img width="1274" alt="12 births_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7e90dfaf-dc31-42dd-afcc-95614a4136e2">
+
+```r
+# Births by neighborhood (2017)
+births %>%
+  filter(Year=="2019") %>%
+  group_by(Neighborhood, Gender) %>%
+  summarise(count=sum(Number)) %>%
+  mutate(percent=paste0(round((count/sum(count))*100, 2), "%")) %>%
+  ggplot(aes(x=reorder(Neighborhood, count), y=count)) +
+  geom_bar(stat="identity", aes(fill=Gender)) +
+  geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5), size = 1.5) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  scale_y_continuous(breaks=seq(0, 5000, 500), labels=comma) +
+  labs(x="Neighborhood", y="Births", title="Births by neighborhood (2019)") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(),
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 4.5, color = "black") 
+  ) + 
+  coord_flip()
+````
+<img width="1267" alt="13 births_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/675edea7-666a-4dd7-a46c-31c4f457c805">
+
+```r
+# Deaths in 2019
+
+deaths %>%
+  group_by(Year, Gender) %>%
+  summarise(Count=sum(Number)) %>%
+  mutate(percent=paste0(round((Count/sum(Count))*100, 2), "%")) %>%
+  filter(Year %in% c(2019)) %>%
+  mutate(Year = factor(Year, levels = c(2019))) %>%
+  ggplot(aes(x=Year, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position="stack") + 
+  geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5), size=3) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  labs(x="Year", y="Deaths", title="Deaths by year (2019)") +
+  scale_y_continuous(labels=comma) +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black") 
+  )
+```
+<img width="1274" alt="14 deaths_by_year" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/30885a1f-1f1b-40cb-aa49-11fe7caf224d">
+
+```r
+# Deaths by district (2019)
+
+deaths %>%
+  filter(Year=="2019") %>%
+  group_by(District, Gender) %>%
+  summarise(count=sum(Number)) %>%
+  mutate(percent=paste0(round((count/sum(count))*100, 2), "%")) %>%
+  ggplot(aes(x=reorder(District, count), y=count)) +
+  geom_bar(stat="identity", aes(fill=Gender)) +
+  geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5), size = 3) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  scale_y_continuous(breaks=seq(0, 5000, 500), labels=comma) +
+  labs(x="District", y="Deaths", title="Deaths by district (2019)") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black") 
+  ) + 
+  coord_flip()
+````
+<img width="1274" alt="15 deaths_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/54aa32a7-aa4f-4977-a205-e63871821221">
+
+```r
+# Deaths by neighborhood (2017)
+
+deaths %>%
+  filter(Year=="2019") %>%
+  group_by(Neighborhood, Gender) %>%
+  summarise(count=sum(Number)) %>%
+  mutate(percent=paste0(round((count/sum(count))*100, 2), "%")) %>%
+  ggplot(aes(x=reorder(Neighborhood, count), y=count)) +
+  geom_bar(stat="identity", aes(fill=Gender)) +
+  geom_text(aes(label=percent, group=Gender), position=position_stack(vjust=0.5), size = 1) +
+  scale_fill_manual(values = c("#91C8E4", "#FFABAB"), name = "Gender") +
+  scale_y_continuous(breaks=seq(0, 5000, 500), labels=comma) +
+  labs(x="Neighborhood", y="Deaths", title="Deaths by neighborhood (2019)") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+  ) +
+  theme(
+    panel.border = element_blank(), 
+    panel.grid = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 5, color = "black") 
+  ) + 
+  coord_flip()
+````
+<img width="1275" alt="16 deaths_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/ee5444f4-4a8d-4047-8849-92d7ffbcf082">
+
+```r
+# Causes of death in Madrid 2019
+death_causes %>%
+  filter(Year == "2019") %>%
+  group_by(Cause) %>%
+  summarise(total = sum(Number)) %>%
+  top_n(15, total) %>%
+  
+  ggplot(aes(x = reorder(Cause, total), y = total, fill = total)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  geom_text(aes(label = total), vjust = 0.5, size = 3) +
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_gradient(low = "#DADAEB", high = "#9E9AC8") +
+  labs(x = "Cause", y = "Total", title = "Top 20 causes of death (2019)") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA),
+    panel.border = element_blank(), 
+    panel.grid.major = element_blank(), 
+    axis.line = element_blank(), 
+    text = element_text(family = "Oswald", size = 10, color = "black"), 
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title.x = element_blank()
+  ) + 
+  coord_flip()
+```
+<img width="1276" alt="17 cause_of_death" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/06837ef6-3ef0-4127-9b92-a46031463c9f">
+
+```r
+# Unemployment by month and year (2021-2023)
+
+month_order <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+unemployed <- unemployed %>%
+  mutate(Month = factor(Month, levels = month_order))
+
+ggplot(unemployed, aes(x = Month, y = Number, fill = factor(Year))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = comma(Number)), vjust = -0.5, size = 2, position = position_dodge(width = 0.9)) +
+  labs(x = "Month", y = "Number of unemployed", title = "Unemployment by month and year (2021-2023)", fill = "Year") +
+  scale_fill_manual(values = c("#EFBC9B", "#FBF3D5", "#D6DAC8")) +  
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#f6f0ec", color = NA), 
+    panel.grid.major = element_blank(), 
+    axis.line = element_line(color = "#f6f0ec"), 
+    text = element_text(family = "Oswald", size = 15, color = "black"), 
+    axis.text.x = element_text(angle = 45, hjust = 1) 
+  )
+````
+<img width="1272" alt="18 unemployed" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/21fb7582-6b01-411b-8478-689e441a3a7c">
+
+```r
+#Name wordcloud
+
+names <- names %>%
+  group_by(Name) %>%
+  summarise(count = sum(Frecuency)) %>%
+  arrange(desc(count))
+
+
+min_freq <- 10
+names_filtered <- names %>%
+  filter(count >= min_freq)
+
+
+wordcloud2(names_filtered, size = 1.5, fontFamily = "Oswald", color = "random-light",
+           backgroundColor = "#f6f0ec", rotateRatio = 0.3, minRotation = -pi/4, maxRotation = pi/4,
+           gridSize = 10, minSize = 10, shuffle = TRUE)
+```
+<img width="1201" alt="19 name_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/94d317b4-cef5-44ba-95ca-b5d91904ecdd">
+
+```r
+#Surname wordcloud
+
+surname <- surname %>%
+  group_by(Surname) %>%
+  summarise(count = sum(Frecuency)) %>%
+  arrange(desc(count))
+
+min_freq <- 10
+surname_filtered <- surname %>%
+  filter(count >= min_freq)
+
+wordcloud2(surname_filtered, size = 1.5, fontFamily = "Oswald", color = "random-light",
+           backgroundColor = "#f6f0ec", rotateRatio = 0.3, minRotation = -pi/4, maxRotation = pi/4,
+           gridSize = 10, minSize = 10, shuffle = TRUE)
+````
+<img width="1194" alt="20 surname_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/20469004-e11c-4dae-aa2a-d53d7db048f0">
+
+```r
+#Baby names wordcloud
+
+baby_names <- baby_names %>%
+  group_by(Name) %>%
+  summarise(count = sum(Frecuency)) %>%
+  arrange(desc(count))
+
+min_freq <- 10
+baby_names_filtered <- baby_names %>%
+  filter(count >= min_freq)
+
+wordcloud2(baby_names_filtered, size = 1.5, fontFamily = "Oswald", color = "random-light",
+           backgroundColor = "#f6f0ec", rotateRatio = 0.3, minRotation = -pi/4, maxRotation = pi/4,
+           gridSize = 10, minSize = 10, shuffle = TRUE)
+
+```
+<img width="1201" alt="21 baby_names_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7d0c46ec-b273-4146-8cd2-991371d8ab63">
+
