@@ -441,8 +441,12 @@ births %>%
   )
 ````
 <img width="1275" alt="11 births_by_year" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/aa9b04ff-d6c0-461d-b704-57a72cafd3bb">
+<br/><br/>
 
+The number of births has shown a consistent stability in recent years. As observed, there is a slight predominance of male births over female births. Now, let's delve into analyzing the births by district in 2019.
+<br/><br/>
 
+---
 ```r
 # Births by district (2017)
 births %>%
@@ -469,7 +473,9 @@ births %>%
   coord_flip()
 ````
 <img width="1274" alt="12 births_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7e90dfaf-dc31-42dd-afcc-95614a4136e2">
+<br/><br/>
 
+---
 ```r
 # Births by neighborhood (2017)
 births %>%
@@ -497,6 +503,13 @@ births %>%
 ````
 <img width="1267" alt="13 births_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/675edea7-666a-4dd7-a46c-31c4f457c805">
 
+<br/><br/>
+
+---
+# Deaths
+<br/><br/>
+
+---
 ```r
 # Deaths in 2019
 
