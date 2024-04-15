@@ -116,6 +116,8 @@ Now we are going to analyze the districts population. We can get an idea of the 
 
 
 ![Madrid_district_map](https://github.com/BORJAMOME/Madrid_I/assets/19588053/5776fd01-d1bb-4695-b02c-e6313afc5507)
+Explore contextual details regarding the districts and neighborhoods of Barcelona [here](https://en.wikipedia.org/wiki/Districts_of_Madrid). Intrigued by which districts have the largest populations? 
+
 
 ```r
 # Population by district (2023)
