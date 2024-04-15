@@ -276,17 +276,19 @@ ggplot(data=immigrants_emigrants_by_age_2021, aes(x=Age, fill=`Immigrants/Emigra
 
 ```
 <img width="1267" alt="6 immi_emi_age" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/0512b055-d29d-4ff6-9704-510c5bc8d2aa">
+<br/><br/>
 
---------------
---------------
---------------
+As evident from the data, close to 30,000 immigrants aged 25 to 29 arrived in 2021. In terms of emigration, distinct age groups emerge: one between 25 and 39, and another among individuals aged 65 and above. This suggests a challenge for young people in securing employment in Madrid, while older residents opt for retirement elsewhere.
+<br/><br/>
+<br/><br/>
 
+In the next visualization, we will analyze emigration by destination (2021) using a Sankey diagram. A Sankey diagram displays flows and their quantities, relative to each other using the width of arrows or lines to show their magnitudes. Let's see!
+
+---
 ```r
 # Nodes 
 nodes <- data.frame(label = unique(immigrants_emigrants_by_destination$from))
 nodes$id <- 1:nrow(nodes)
-
-
 
 # Emigrants 
 emigrants_by_destination <- immigrants_emigrants_by_destination %>%
