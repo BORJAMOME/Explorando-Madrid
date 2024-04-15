@@ -6,9 +6,13 @@ In this project focused on the city of Madrid, I will explore various key aspect
 
 This portal contains a wide range of datasets on demographics, economy, education, health, and other relevant aspects of life in the city of Madrid, providing a solid foundation for my research.
 
-# Loading Data
+# <sub> Loading Data </sub>
+
 Initially, we'll import essential libraries and proceed to read the datasets.
 
+<br/><br/>
+
+---
 ``` r
 # Load libraries
 library(tidyverse)
@@ -44,8 +48,9 @@ surname <- read.csv("../input/most_frequent_surname.csv", sep=",")
 ```
 # Data Analysis
 Population: The first graph is a study of the population of the city of Madrid between the years 2018 and 2023, showing the percentage of men and women each year.
+<br/><br/>
 
-
+---
 ```r
 # Population by year 
 
@@ -75,9 +80,11 @@ population %>%
 
 ```
 <img width="1266" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/13a8408b-e7b9-4dd3-b1a0-47a9261a3e16">
-
+<br/><br/>
 The population of the city of Madrid remains stable at around 6 million people. The female population is slightly higher than the male population. The population is very stable, so for the next visualization, I will only use the last year (2023). The next visualization will be Population by Age.
+<br/><br/>
 
+---
 ```r
 # Ordered levels
 age_population$Age <- ordered(age_population$Age, levels=c("0-4", "5-9", "10-14", "15-19",
@@ -109,16 +116,23 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
   )
 ```
 <img width="1274" alt="2 Age_population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8862e89c-8567-4e89-b480-7e890dc0c2b8">
+<br/><br/>
+
 
 The population distribution is centered around 35-44 years. It’s interesting to observe how the male population decreases considerably from the 40-44 years old range, while in the female gender the decrease is less pronounced. It seems clear that men live less years in Barcelona!
 
 Now we are going to analyze the districts population. We can get an idea of the size and location of each district using the following map.
 
+<br/><br/>
+
+---
 
 ![Madrid_district_map](https://github.com/BORJAMOME/Madrid_I/assets/19588053/5776fd01-d1bb-4695-b02c-e6313afc5507)
+
 Explore contextual details regarding the districts and neighborhoods of Barcelona [here](https://en.wikipedia.org/wiki/Districts_of_Madrid). Intrigued by which districts have the largest populations? 
+<br/><br/>
 
-
+---
 ```r
 # Population by district (2023)
 population %>%
@@ -145,8 +159,12 @@ population %>%
   )
 ````
 <img width="1270" alt="3 population_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/fb16c1f4-8ada-4112-920c-70d33adb48c3">
-
+<br/><br/>
 Carabanchel leads as Madrid's most populous district, closely followed by Fuencarral-El Pardo, Latina, and Puente de Vallecas. In contrast, Barajas stands as the least populated district. We notice a trend where the female population surpasses the male population in all neighborhoods, with the exception of Centro. Let's delve deeper and dissect the population by neighborhoods, with over 131 in total.
+
+<br/><br/>
+
+---
 
 ```r
 # Population by neighborhood (2023)
@@ -174,12 +192,20 @@ population %>%
   )
 ```
 <img width="1268" alt="4 population_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/0946fe58-b462-4d41-8830-30da24d1ca95">
+<br/><br/>
+
+
 In the Top 50 neighborhoods the female population is higher than the male population, except in el Embajadores.
+
+<br/><br/>
+
+---
 
 # Immigration and emigration
 
 In this section, we'll present visualizations to unravel the complex dynamics of immigration and emigration in Barcelona. We'll kick off with an analysis organized by year.
 
+---
 ```r
 immigrants_emigrants_by_sex <- gather(immigrants_emigrants_by_sex, `Immigrants/Emigrants`,
                                       value, Immigrants:Emigrants, na.rm=TRUE)
@@ -204,8 +230,13 @@ immigrants_emigrants_by_sex %>%
   )
 ````
 <img width="1271" alt="5 immi_emi_sex" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/d1c5dc6c-c9e2-4bed-a6f6-524f27913ef7">
-According to the latest data provided by the City of Madrid up to 2021, the city has experienced a progressive increase from 2017 to 2019, followed by a decline in 2020 due to the Covid pandemic, and has returned to increases in 2021. Regarding the emigration of Madrileños, a progressive increase can be observed in recent years.
+<br/><br/>
 
+
+According to the latest data provided by the City of Madrid up to 2021, the city has experienced a progressive increase from 2017 to 2019, followed by a decline in 2020 due to the Covid pandemic, and has returned to increases in 2021. Regarding the emigration of Madrileños, a progressive increase can be observed in recent years.
+<br/><br/>
+
+---
 
 ```r
 
