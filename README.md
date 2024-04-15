@@ -603,6 +603,9 @@ deaths %>%
 <img width="1275" alt="16 deaths_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/ee5444f4-4a8d-4047-8849-92d7ffbcf082">
 <br/><br/>
 
+This chart displays the top 20 causes of death in the year 2019, with respiratory diseases, old age, and heart diseases standing out among them.
+<br/><br/>
+
 ---
 
 ```r
@@ -633,7 +636,16 @@ death_causes %>%
 ```
 <img width="1276" alt="17 cause_of_death" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/06837ef6-3ef0-4127-9b92-a46031463c9f">
 
+# Unemployment
+Unemployment represents one of the greatest challenges for the citizens of Madrid. As can be seen, there has been a significant reduction in unemployment from 2021 to 2022, resulting from both the decrease in the pandemic and economic restructuring.
+
+In the monthly analysis, a slight decrease in unemployment is observed during the summer months (June, July, August, and September) and in December, likely influenced by holiday campaigns.
+<br/><br/>
+
+---
 ```r
+
+
 # Unemployment by month and year (2021-2023)
 
 month_order <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
@@ -657,6 +669,13 @@ ggplot(unemployed, aes(x = Month, y = Number, fill = factor(Year))) +
 ````
 <img width="1272" alt="18 unemployed" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/21fb7582-6b01-411b-8478-689e441a3a7c">
 
+# Most frequent names
+
+In the bustling city of Madrid, the most common names among men and women include David, Maria, Javier, Carmen, Antonio, and José, each carrying with them a rich history and a sense of identity rooted in Madrid's culture. These names, full of character and tradition, have resonated in the streets of the Spanish capital for generations, shaping the diversity and vitality of the Madrid community.
+<br/><br/>
+
+---
+
 ```r
 #Name wordcloud
 
@@ -677,7 +696,12 @@ wordcloud2(names_filtered, size = 1.5, fontFamily = "Oswald", color = "random-li
 ```
 <img width="1201" alt="19 name_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/94d317b4-cef5-44ba-95ca-b5d91904ecdd">
 
+# Most frequent surnames
+<br/><br/>
+
+---
 ```r
+
 #Surname wordcloud
 
 surname <- surname %>%
@@ -695,8 +719,12 @@ wordcloud2(surname_filtered, size = 1.5, fontFamily = "Oswald", color = "random-
 ````
 <img width="1194" alt="20 surname_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/20469004-e11c-4dae-aa2a-d53d7db048f0">
 
+# Most frequent baby names
+<br/><br/>
+
+---
 ```r
-#Baby names wordcloud
+#  Baby names wordcloud
 
 baby_names <- baby_names %>%
   group_by(Name) %>%
