@@ -7,7 +7,7 @@ In this project focused on the city of Madrid, I will explore various key aspect
 This portal contains a wide range of datasets on demographics, economy, education, health, and other relevant aspects of life in the city of Madrid, providing a solid foundation for my research.
 
 # Loading Data
-To begin, we'll need to load necessary libraries and import the datasets.
+Initially, we'll import essential libraries and proceed to read the datasets.
 
 ``` r
 # Load libraries
@@ -21,7 +21,7 @@ library(knitr)
 library(ggplot2)
 
 
-# Change text
+# Change text to Oswald
 library(showtext)
 font_add_google("Oswald")
 showtext_auto()
@@ -29,24 +29,29 @@ showtext_auto()
 # Read the data 
 population <- read.csv("../input/population.csv", sep=",", fileEncoding="UTF-8")
 age_population <- read.csv("../input/age_population.csv", sep=",", fileEncoding="UTF-8")
-immigrants_emigrants_by_age <- read.csv("../input/immigrants_emigrants_by_age.csv", sep=",", fileEncoding="UTF-8")
+immigrants_emigrants_by_sex <- read.csv("../input/immigrants_emigrants_by_sex.csv", sep=",", fileEncoding="UTF-8")
 immigrants_emigrants_by_destination <- read.csv("../input/immigrants_emigrants_by_destination.csv", sep=",", fileEncoding="UTF-8")
 immigrants_emigrants_by_destination2 <- read.csv("../input/immigrants_emigrants_by_destination2.csv", sep=",", fileEncoding="UTF-8")
 immigrants_by_nationality <- read.csv("../input/immigrants_by_nationality.csv", sep=",", fileEncoding="UTF-8")
 births <- read.csv("../input/births.csv", sep=",", fileEncoding="UTF-8")
 deaths <- read.csv("../input/deaths.csv", sep=",", fileEncoding="UTF-8")
+deaths_causes <- read.csv("../input/deaths_causes.csv", sep=",", fileEncoding="UTF-8")
 unemployment <- read.csv("../input/unemployment.csv", sep=",", fileEncoding="UTF-8")
 baby_names <- read.csv("../input/most_frequent_baby_names.csv", sep=",")
 names <- read.csv("../input/most_frequent_names.csv", sep=",")
+surname <- read.csv("../input/most_frequent_surname.csv", sep=",")
 
 ```
 # Data Analysis
-Population
+Population: The first graph is a study of the population of the city of Madrid between the years 2018 and 2023, showing the percentage of men and women each year.
+
 
 ```r
 # Population by year 
 
+# Ordered levels
 population$Year <- ordered(population$Year, levels=c(2018,2019,2020,2021,2022,2023))
+
 population %>%
   group_by(Year, Gender) %>%
   summarise(count=sum(Number)) %>%
@@ -71,17 +76,18 @@ population %>%
 ```
 <img width="1266" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/13a8408b-e7b9-4dd3-b1a0-47a9261a3e16">
 
+The population of the city of Madrid remains stable at around 6 million people. The female population is slightly higher than the male population. The population is very stable, so for the next visualization, I will only use the last year (2023). The next visualization will be Population by Age.
 
---------------
---------------
---------------
 ```r
 # Ordered levels
 age_population$Age <- ordered(age_population$Age, levels=c("0-4", "5-9", "10-14", "15-19",
                                                    "20-24", "25-29", "30-34", "35-39",
                                                    "40-44", "45-49", "50-54", "55-59",
                                                    "60-64", "65-69", "70-74", "75-79",
-                                                   "80-84", "85-89", "90-94", "95-99"  ,"100&more"))
+                                                   "80-84", "85-89", "90-94", "95-99"  ,
+                                                   "100&more"))
+
+# Population by age (2023)
 
 ggplot(data=age_population, aes(x=Age, fill=Gender)) +
   geom_bar(data=filter(age_population, Gender=="Female"), aes(y=Number), stat="identity") + 
@@ -104,10 +110,10 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
 ```
 <img width="1274" alt="2 Age_population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8862e89c-8567-4e89-b480-7e890dc0c2b8">
 
+The population distribution is centered around 35-44 years. It’s interesting to observe how the male population decreases considerably from the 40-44 years old range, while in the female gender the decrease is less pronounced. It seems clear that men live less years in Barcelona!
 
---------------
---------------
---------------
+Now we are going to analyze the districts population. We can get an idea of the size and location of each district using the following map.
+
 
 ![Madrid_district_map](https://github.com/BORJAMOME/Madrid_I/assets/19588053/5776fd01-d1bb-4695-b02c-e6313afc5507)
 
