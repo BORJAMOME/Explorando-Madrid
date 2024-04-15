@@ -6,7 +6,7 @@ In this project focused on the city of Madrid, I will explore various key aspect
 
 This portal contains a wide range of datasets on demographics, economy, education, health, and other relevant aspects of life in the city of Madrid, providing a solid foundation for my research.
 
-# <sub> Loading Data </sub>
+# <sub> Loading Data ⚙️ </sub>
 
 Initially, we'll import essential libraries and proceed to read the datasets.
 
@@ -46,9 +46,12 @@ names <- read.csv("../input/most_frequent_names.csv", sep=",")
 surname <- read.csv("../input/most_frequent_surname.csv", sep=",")
 
 ```
-# Data Analysis
-Population: The first graph is a study of the population of the city of Madrid between the years 2018 and 2023, showing the percentage of men and women each year.
+# Data Analysis 📊
 <br/><br/>
+# Population 👥
+
+The first graph is a study of the population of the city of Madrid between the years 2018 and 2023, showing the percentage of men and women each year.
+
 
 ---
 ```r
@@ -201,7 +204,7 @@ In the Top 50 neighborhoods the female population is higher than the male popula
 
 ---
 
-# Immigration and emigration
+# Immigration and emigration 📍
 
 In this section, we'll present visualizations to unravel the complex dynamics of immigration and emigration in Barcelona. We'll kick off with an analysis organized by year.
 
@@ -406,7 +409,7 @@ immigrants_by_nationality %>%
 ````
 <img width="1260" alt="10 immigrants_nationality" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/cbb4d93b-8944-4247-9a29-837ce258a016">
 
-# Births
+# Births 🍼
 
 Let’s analyze the births by year of the city of Barcelona (2018-2019).
 
@@ -506,7 +509,7 @@ births %>%
 <br/><br/>
 
 ---
-# Deaths
+# Deaths ☠️
 In this section, we will analyze the gender distribution of deaths in the city of Madrid in 2019.
 <br/><br/>
 
@@ -636,7 +639,7 @@ death_causes %>%
 ```
 <img width="1276" alt="17 cause_of_death" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/06837ef6-3ef0-4127-9b92-a46031463c9f">
 
-# Unemployment
+# Unemployment 💼
 Unemployment represents one of the greatest challenges for the citizens of Madrid. As can be seen, there has been a significant reduction in unemployment from 2021 to 2022, resulting from both the decrease in the pandemic and economic restructuring.
 
 In the monthly analysis, a slight decrease in unemployment is observed during the summer months (June, July, August, and September) and in December, likely influenced by holiday campaigns.
@@ -669,7 +672,7 @@ ggplot(unemployed, aes(x = Month, y = Number, fill = factor(Year))) +
 ````
 <img width="1272" alt="18 unemployed" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/21fb7582-6b01-411b-8478-689e441a3a7c">
 
-# Most frequent names
+# Most frequent names 🏆
 
 In the bustling city of Madrid, the most common names among men and women include David, Maria, Javier, Carmen, Antonio, and José, each carrying with them a rich history and a sense of identity rooted in Madrid's culture. These names, full of character and tradition, have resonated in the streets of the Spanish capital for generations, shaping the diversity and vitality of the Madrid community.
 <br/><br/>
@@ -742,3 +745,10 @@ wordcloud2(baby_names_filtered, size = 1.5, fontFamily = "Oswald", color = "rand
 ```
 <img width="1201" alt="21 baby_names_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7d0c46ec-b273-4146-8cd2-991371d8ab63">
 
+<br/><br/>
+
+---
+
+# References
+
+This project is inspired by the work done by [Xavier](https://www.kaggle.com/xvivancos) on Kaggle about the city of Barcelona.
