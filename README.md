@@ -286,46 +286,6 @@ In the next visualization, we will analyze emigration by destination (2021) usin
 
 ---
 ```r
-# Nodes 
-nodes <- data.frame(label = unique(immigrants_emigrants_by_destination$from))
-nodes$id <- 1:nrow(nodes)
-
-# Emigrants 
-emigrants_by_destination <- immigrants_emigrants_by_destination %>%
-  filter(from == "Madrid")
-
-# Edges 
-edges <- emigrants_by_destination %>%
-  left_join(nodes, by = c("from" = "label")) %>%
-  select(-from) %>%
-  rename(from = id)
-
-edges <- emigrants_by_destination %>% 
-  left_join(nodes, by = c("from" = "label")) %>%
-  select(-from) %>%
-  dplyr::rename(from = id) 
-
-edges <- edges %>%
-  left_join(nodes, by = c("to" = "label")) %>%
-  select(-to) %>%
-  rename(to = id)
-
-nodes_d3 <- mutate(nodes, id = id - 1)
-edges_d3 <- mutate(edges, from = from - 1, to = to -1)
-
-# sankeyNetwork - Emigrants destination 
-sankeyNetwork(Links = edges_d3, Nodes = nodes_d3, Source= 'from', 
-              Target = 'to', NodeID = 'label', Value = 'weight', 
-              fontSize = 16, unit = 'Letter(s)')
-
-````
-<img width="1275" alt="7 emigrants_destination" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/01906d6c-3879-4a08-9d23-b202279aa068">
-
---------------
---------------
---------------
-
-```r
 nodes <- as.data.frame(unique(immigrants_emigrants_by_destination2$from))
 nodes$id <- 1:nrow(nodes)
 nodes <- nodes[, c(2,1)]
@@ -361,6 +321,20 @@ sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to",
 <img width="1270" alt="8 emigrants_destination_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/39d559bc-4c4e-449b-ac8c-bafaf2504786">
 
 
+It's important to note that the dataset used for this visualization does not specify destinations outside of Spain (under the category "Abroad"). Below are some comments about the graph:
+
+It is observed that the vast majority of inhabitants move to the Community of Madrid region. This may involve individuals seeking a better quality of life outside the city of Madrid.
+
+Another significant group of people relocates to areas in Castilla y León, Castilla-La Mancha, Extremadura, and Andalusia. These individuals might be those who emigrated years ago and are returning to their places of origin to retire.
+
+Lastly, another portion of the population moves abroad in search of better job opportunities.
+
+<br/><br/>
+
+In the following visualization, we can see how the masses of immigrants move to the different neighborhoods of the city of Madrid.
+
+---
+
 ```r
 
 # Nodes
@@ -394,12 +368,14 @@ sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to",
               NodeID="label", Value="weight", fontSize=16, unit="Letter(s)")
 ```
 
-
 <img width="1260" alt="9 immigrants_destination_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/b62ee49c-92b7-41fd-a883-a527f35c0360">
 
---------------
---------------
---------------
+<br/><br/>
+
+As expected, the vast majority of immigrants come from outside of Spain, with another large portion originating from the Community of Madrid. In the following visualization, we can see which other countries they come from in the year 2020.
+<br/><br/>
+
+---
 
 ```r
 # Immigrants by nationality
@@ -430,9 +406,13 @@ immigrants_by_nationality %>%
 ````
 <img width="1260" alt="10 immigrants_nationality" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/cbb4d93b-8944-4247-9a29-837ce258a016">
 
---------------
---------------
---------------
+#Births
+Let’s analyze the births by year of the city of Barcelona (2013-2017).
+
+<br/><br/>
+
+---
+
 ```r
 # Births by year
 
