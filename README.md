@@ -507,6 +507,7 @@ births %>%
 
 ---
 # Deaths
+In this section, we will analyze the gender distribution of deaths in the city of Madrid in 2019.
 <br/><br/>
 
 ---
@@ -537,7 +538,12 @@ deaths %>%
   )
 ```
 <img width="1274" alt="14 deaths_by_year" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/30885a1f-1f1b-40cb-aa49-11fe7caf224d">
+<br/><br/>
 
+As expected, the number of male deaths exceeds that of females. Now, let's delve into analyzing the number of deceased individuals by district and neighborhood in the city of Madrid.
+<br/><br/>
+
+---
 ```r
 # Deaths by district (2019)
 
@@ -565,7 +571,9 @@ deaths %>%
   coord_flip()
 ````
 <img width="1274" alt="15 deaths_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/54aa32a7-aa4f-4977-a205-e63871821221">
+<br/><br/>
 
+---
 ```r
 # Deaths by neighborhood (2017)
 
@@ -593,6 +601,9 @@ deaths %>%
   coord_flip()
 ````
 <img width="1275" alt="16 deaths_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/ee5444f4-4a8d-4047-8849-92d7ffbcf082">
+<br/><br/>
+
+---
 
 ```r
 # Causes of death in Madrid 2019
