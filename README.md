@@ -406,8 +406,9 @@ immigrants_by_nationality %>%
 ````
 <img width="1260" alt="10 immigrants_nationality" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/cbb4d93b-8944-4247-9a29-837ce258a016">
 
-#Births
-Let’s analyze the births by year of the city of Barcelona (2013-2017).
+# Births
+
+Let’s analyze the births by year of the city of Barcelona (2018-2019).
 
 <br/><br/>
 
