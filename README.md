@@ -1,65 +1,67 @@
-# Exploring Madrid: A Data-driven Analysis with R 🐻🌳
-![Madrid](https://github.com/BORJAMOME/Madrid_I/assets/19588053/02c8eaf8-cb54-488d-9d39-37d5ecd6bc90)
+# Explorando Madrid: Un análisis basado en datos con R 
 
-# Introduction
-In this project focused on the city of Madrid, I will explore various key aspects including population, immigration and emigration movements, birth and death statistics, unemployment rates, and the most common names among residents. To conduct this analysis, I will use data provided by the Banco de Datos del Ayuntamiento de Madrid, a reliable and comprehensive source.
+## **Introducción**
+En este proyecto, realizaremos un análisis exhaustivo sobre varios aspectos clave de la ciudad de **Madrid**, con el objetivo de comprender mejor su dinámica social y económica. Algunos de los temas que exploraremos incluyen:
 
-This portal contains a wide range of datasets on demographics, economy, education, health, and other relevant aspects of life in the city of Madrid, providing a solid foundation for my research.
+- **Evolución de la población**
+- **Flujos migratorios** (inmigración y emigración)
+- **Estadísticas de nacimientos y defunciones**
+- **Tasas de desempleo**
+- **Nombres más comunes entre los residentes**
 
-# <sub> Loading Data ⚙️ </sub>
+Para realizar este análisis, utilizamos datos del **Banco de Datos del Ayuntamiento de Madrid**, una fuente pública y confiable.
 
-Initially, we'll import essential libraries and proceed to read the datasets.
+# <sub> Carga de Datos </sub>
 
-<br/><br/>
+El primer paso en este análisis es cargar las bibliotecas necesarias y los conjuntos de datos que se utilizarán en la investigación. A continuación se muestra el código que utilizamos para importar las bibliotecas y leer los archivos CSV:
 
----
 ``` r
-# Load libraries
-library(tidyverse)
-library(knitr)
-library(scales)
-library(wordcloud2)
-library(visNetwork)
-library(networkD3)
-library(knitr)
-library(ggplot2)
+# Cargar bibliotecas necesarias para el análisis de datos
+library(tidyverse)  # Paquete para manipulación de datos y gráficos
+library(knitr)      # Para crear informes dinámicos
+library(scales)     # Para escalas en gráficos
+library(wordcloud2) # Para generar nubes de palabras
+library(visNetwork) # Para redes interactivas
+library(networkD3)  # Para redes dinámicas
 
+# Cambiar la fuente del texto a "Oswald" para mejorar la apariencia visual
+library(showtext)  # Paquete para añadir fuentes personalizadas
+font_add_google("Oswald")  # Añadir fuente desde Google Fonts
+showtext_auto()  # Activar la fuente personalizada para todo el proyecto
 
-# Change text to Oswald
-library(showtext)
-font_add_google("Oswald")
-showtext_auto()
+# Leer los datos desde los archivos CSV
+population <- read.csv("../input/population.csv", sep=",", fileEncoding="UTF-8")  # Población total
+age_population <- read.csv("../input/age_population.csv", sep=",", fileEncoding="UTF-8")  # Población por edad
+immigrants_emigrants_by_sex <- read.csv("../input/immigrants_emigrants_by_sex.csv", sep=",", fileEncoding="UTF-8")  # Inmigrantes y emigrantes por sexo
+immigrants_emigrants_by_destination <- read.csv("../input/immigrants_emigrants_by_destination.csv", sep=",", fileEncoding="UTF-8")  # Inmigrantes y emigrantes por destino
+immigrants_emigrants_by_destination2 <- read.csv("../input/immigrants_emigrants_by_destination2.csv", sep=",", fileEncoding="UTF-8")  # Inmigrantes y emigrantes por destino (segunda tabla)
+immigrants_by_nationality <- read.csv("../input/immigrants_by_nationality.csv", sep=",", fileEncoding="UTF-8")  # Inmigrantes por nacionalidad
+births <- read.csv("../input/births.csv", sep=",", fileEncoding="UTF-8")  # Estadísticas de nacimientos
+deaths <- read.csv("../input/deaths.csv", sep=",", fileEncoding="UTF-8")  # Estadísticas de defunciones
+deaths_causes <- read.csv("../input/deaths_causes.csv", sep=",", fileEncoding="UTF-8")  # Causas de defunciones
+unemployment <- read.csv("../input/unemployment.csv", sep=",", fileEncoding="UTF-8")  # Tasa de desempleo
+baby_names <- read.csv("../input/most_frequent_baby_names.csv", sep=",")  # Nombres de bebés más frecuentes
+names <- read.csv("../input/most_frequent_names.csv", sep=",")  # Nombres más frecuentes
+surname <- read.csv("../input/most_frequent_surname.csv", sep=",")  # Apellidos más frecuentes
 
-# Read the data 
-population <- read.csv("../input/population.csv", sep=",", fileEncoding="UTF-8")
-age_population <- read.csv("../input/age_population.csv", sep=",", fileEncoding="UTF-8")
-immigrants_emigrants_by_sex <- read.csv("../input/immigrants_emigrants_by_sex.csv", sep=",", fileEncoding="UTF-8")
-immigrants_emigrants_by_destination <- read.csv("../input/immigrants_emigrants_by_destination.csv", sep=",", fileEncoding="UTF-8")
-immigrants_emigrants_by_destination2 <- read.csv("../input/immigrants_emigrants_by_destination2.csv", sep=",", fileEncoding="UTF-8")
-immigrants_by_nationality <- read.csv("../input/immigrants_by_nationality.csv", sep=",", fileEncoding="UTF-8")
-births <- read.csv("../input/births.csv", sep=",", fileEncoding="UTF-8")
-deaths <- read.csv("../input/deaths.csv", sep=",", fileEncoding="UTF-8")
-deaths_causes <- read.csv("../input/deaths_causes.csv", sep=",", fileEncoding="UTF-8")
-unemployment <- read.csv("../input/unemployment.csv", sep=",", fileEncoding="UTF-8")
-baby_names <- read.csv("../input/most_frequent_baby_names.csv", sep=",")
-names <- read.csv("../input/most_frequent_names.csv", sep=",")
-surname <- read.csv("../input/most_frequent_surname.csv", sep=",")
 
 ```
-# Data Analysis 📊
-<br/><br/>
-# Population 👥
+# **Análisis de Datos**
+## **Población** 
 
-The first graph is a study of the population of the city of Madrid between the years 2018 and 2023, showing the percentage of men and women each year.
+El primer gráfico presenta un análisis de la **población de la ciudad de Madrid** durante el período comprendido entre los años **2018 y 2023**.
 
+### **Objetivo del Análisis:**
 
----
+- **Analizar la evolución** de la población de Madrid en términos de género durante los últimos cinco años.
+- **Identificar tendencias** en el cambio de la proporción entre hombres y mujeres.
+
 ```r
-# Population by year 
 
-# Ordered levels
+# Niveles ordenados
 population$Year <- ordered(population$Year, levels=c(2018,2019,2020,2021,2022,2023))
 
+# Análisis de población por género y visualización
 population %>%
   group_by(Year, Gender) %>%
   summarise(count=sum(Number)) %>%
@@ -84,8 +86,7 @@ population %>%
 ```
 <img width="1266" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/13a8408b-e7b9-4dd3-b1a0-47a9261a3e16">
 <br/><br/>
-The population of the city of Madrid remains stable at around 6 million people. The female population is slightly higher than the male population. The population is very stable, so for the next visualization, I will only use the last year (2023). The next visualization will be Population by Age.
-<br/><br/>
+La población de la ciudad de Madrid se mantiene estable en alrededor de 6 millones de personas. La población femenina es ligeramente mayor que la masculina. Este patrón de estabilidad en la población es claro, y por esta razón, para la siguiente visualización, utilizaremos solo los datos del último año (2023).<br/><br/>
 
 ---
 ```r
