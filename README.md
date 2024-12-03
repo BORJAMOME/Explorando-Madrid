@@ -1,19 +1,19 @@
 # Explorando Madrid: Un análisis basado en datos con R 
 
 ## **Introducción**
-En este proyecto, realizaremos un análisis exhaustivo sobre varios aspectos clave de la ciudad de **Madrid**, con el objetivo de comprender mejor su dinámica social y económica. Algunos de los temas que exploraremos incluyen:
+En el presente proyecto, se llevará a cabo un análisis detallado de diversos aspectos clave de la ciudad de **Madrid**, con el propósito de obtener una comprensión más profunda de su dinámica social, económica y demográfica. A través de este análisis, abordaremos temas fundamentales como los siguientes:
 
-- **Evolución de la población**
-- **Flujos migratorios** (inmigración y emigración)
-- **Estadísticas de nacimientos y defunciones**
-- **Tasas de desempleo**
-- **Nombres más comunes entre los residentes**
+- **Evolución de la población:** Análisis de los cambios en la población a lo largo del tiempo.
+- **Flujos migratorios:** Estudio de los patrones de inmigración y emigración que afectan a la ciudad.
+- **Estadísticas de nacimientos y defunciones:** Exploración de las tasas de nacimientos y defunciones en los últimos años.
+- **Tasas de desempleo:** Evaluación de la situación laboral de los residentes.
+- **Nombres más comunes entre los residentes:** Identificación de los nombres más frecuentes entre los habitantes de Madrid.
 
 Para realizar este análisis, utilizamos datos del **Banco de Datos del Ayuntamiento de Madrid**, una fuente pública y confiable.
 
 # <sub> Carga de Datos </sub>
 
-El primer paso en este análisis es cargar las bibliotecas necesarias y los conjuntos de datos que se utilizarán en la investigación. A continuación se muestra el código que utilizamos para importar las bibliotecas y leer los archivos CSV:
+El primer paso en este análisis consiste en cargar las bibliotecas necesarias y los conjuntos de datos que se utilizarán para llevar a cabo la investigación. A continuación, se presenta el código utilizado para importar las bibliotecas esenciales y leer los archivos CSV que contienen los datos relevantes para el estudio:
 
 ``` r
 # Cargar bibliotecas necesarias para el análisis de datos
@@ -58,7 +58,7 @@ El primer gráfico presenta un análisis de la **población de la ciudad de Madr
 
 ```r
 
-# Niveles ordenados
+# Niveles ordenados de los años
 population$Year <- ordered(population$Year, levels=c(2018,2019,2020,2021,2022,2023))
 
 # Análisis de población por género y visualización
@@ -86,14 +86,15 @@ population %>%
 ```
 <img width="1266" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/13a8408b-e7b9-4dd3-b1a0-47a9261a3e16">
 <br/><br/>
-La población de la ciudad de Madrid se mantiene estable en alrededor de 6 millones de personas. La población femenina es ligeramente mayor que la masculina. Este patrón de estabilidad en la población es claro, y por esta razón, para la siguiente visualización, utilizaremos solo los datos del último año (2023).<br/><br/>
+
+La población de la ciudad de Madrid se mantiene estable en torno a los **6 millones de personas**. Se observa que la población femenina es ligeramente superior a la masculina, lo que refleja una tendencia demográfica constante durante los últimos años. Este patrón de estabilidad en la población es evidente, lo que nos lleva a centrarnos en un análisis más detallado del último año disponible, **2023**, para la siguiente visualización.
 
 
-### **Población por Edad (2023)**
-En este análisis, exploramos la distribución de la población de Madrid por grupos de edad durante el año 2023.
+### **Población por Edad**
+En este análisis, exploramos la **distribución de la población de Madrid** por grupos de edad durante el año **2023**.
 
 ```r
-# Ordenar las edades
+# Ordenar por rango de edad
 age_population$Age <- ordered(age_population$Age, levels=c("0-4", "5-9", "10-14", "15-19",
                                                    "20-24", "25-29", "30-34", "35-39",
                                                    "40-44", "45-49", "50-54", "55-59",
@@ -124,8 +125,7 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
 <img width="1274" alt="2 Age_population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8862e89c-8567-4e89-b480-7e890dc0c2b8">
 <br/><br/>
 
-
-La distribución de la población se centra en el rango de 45-65 años. Es interesante observar cómo la población masculina disminuye considerablemente a partir del rango de 60-65 años, mientras que en la población femenina esta disminución es menos pronunciada.
+La distribución de la población se centra principalmente en el rango de **45 a 65 años**. Un hallazgo interesante es que la población masculina muestra una disminución considerable a partir del rango de **60-65 años**, mientras que en la población femenina esta disminución es **menos pronunciada**. Este patrón podría reflejar diferencias en la esperanza de vida y otros factores demográficos que afectan de manera distinta a ambos géneros.
 
 <br/><br/>
 
@@ -139,7 +139,6 @@ Ahora vamos a analizar la población por distritos. Podemos obtener una idea del
 
 ### **Población de Madrid por distrito**
 
----
 ```r
 # Población por distrito (2023)
 population %>%
@@ -172,9 +171,7 @@ population %>%
 
 <br/><br/>
 
----
 ### **Población de Madrid por barrios**
-
 
 ```r
 # Población de Madrid por barrios (2023)
@@ -209,15 +206,13 @@ En los **50 principales barrios**, la población femenina es mayor que la mascul
 
 <br/><br/>
 
----
 
 # Inmigración y Emigración
 
-En esta sección, presentaremos visualizaciones para desentrañar las complejas dinámicas de la inmigración y emigración en Madrid. Comenzaremos con un análisis organizado por años.
+En esta sección, presentaremos visualizaciones que nos permitirán desentrañar las complejas dinámicas de la **inmigración** y **emigración** en Madrid. El análisis se organiza de manera **anual**, lo que nos permitirá observar las fluctuaciones y tendencias a lo largo del tiempo. 
 
 ### **Inmigración y Emigración por año (2017-2021)**
 
----
 ```r
 immigrants_emigrants_by_sex <- gather(immigrants_emigrants_by_sex, `Immigrants/Emigrants`,
                                       value, Immigrants:Emigrants, na.rm=TRUE)
@@ -248,12 +243,9 @@ immigrants_emigrants_by_sex %>%
 Según los últimos datos proporcionados por la **Ciudad de Madrid** hasta **2021**, la ciudad ha experimentado un **aumento progresivo** desde **2017** hasta **2019**, seguido de una **disminución** en **2020** debido a la **pandemia de Covid**, y ha vuelto a registrar aumentos en **2021**. En cuanto a la **emigración de los madrileños**, se puede observar un **aumento progresivo** en los últimos años.
 <br/><br/>
 
----
 ### **Inmigración y Emigración por rango de edad (2021)**
 
-
 ```r
-
 immigrants_emigrants_by_age <- gather(immigrants_emigrants_by_age, `Immigrants/Emigrants`, 
                                       value, Immigrants:Emigrants, na.rm=TRUE)
 
@@ -295,9 +287,10 @@ ggplot(data=immigrants_emigrants_by_age_2021, aes(x=Age, fill=`Immigrants/Emigra
 Como es evidente a partir de los datos, cerca de **30,000 inmigrantes** de **25 a 29 años** llegaron en **2021**. En términos de **emigración**, surgen **grupos de edad** distintos: uno entre **25 y 39 años**, y otro entre las personas de **65 años en adelante**. Esto sugiere un desafío para los **jóvenes** en la obtención de empleo en Madrid, mientras que los residentes mayores optan por **jubilación** en otros lugares.
 
 <br/><br/>
-<br/><br/>
+### **Emigración por destino**
 
-En la siguiente **visualización**, analizaremos la **emigración por destino** (2021) utilizando un **diagrama de Sankey**. Un **diagrama de Sankey** muestra los **flujos** y sus **cantidades**, relativas entre sí, utilizando el **ancho de las flechas** o **líneas** para mostrar sus magnitudes. ¡Veamos!
+
+En la siguiente **visualización**, analizaremos la **emigración por destino** (2021) utilizando un **diagrama de Sankey** (Un **diagrama de Sankey** muestra los **flujos** y sus **cantidades**, relativas entre sí, utilizando el **ancho de las flechas** o **líneas** para mostrar sus magnitudes)
 
 ---
 ```r
@@ -328,7 +321,7 @@ edges <- edges %>%
 nodes_d3 <- mutate(nodes, id=id-1)
 edges_d3 <- mutate(edges, from=from-1, to=to-1)
 
-# sankeyNetwork - Emigrants destination
+# sankeyNetwork - Destino emigrantes
 
 sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to", 
               NodeID="label", Value="weight", fontSize=16, unit="Letter(s)")
@@ -336,20 +329,20 @@ sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to",
 <img width="1270" alt="8 emigrants_destination_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/39d559bc-4c4e-449b-ac8c-bafaf2504786">
 
 
-Es importante señalar que el **conjunto de datos** utilizado para esta **visualización** no especifica los **destinos fuera de España** (bajo la categoría "Exteriores"). Estos son algunos comentarios sobre el gráfico:
+Es importante señalar que el **conjunto de datos** utilizado para esta **visualización** no especifica los **destinos fuera de España** bajo la categoría "Exteriores". Sin embargo, se pueden hacer algunas observaciones sobre los destinos de emigración:
 
-Se observa que la gran mayoría de los habitantes se trasladan a la **Comunidad de Madrid**. Esto puede involucrar a personas que buscan una mejor **calidad de vida** fuera de la ciudad de Madrid.
+- **Comunidad de Madrid**: La gran mayoría de los habitantes se trasladan a otras áreas dentro de la **Comunidad de Madrid**. Este patrón podría reflejar el deseo de las personas de **mejorar su calidad de vida** fuera del centro de la ciudad, buscando entornos más tranquilos o económicos.
 
-Otro grupo significativo de personas se traslada a zonas de **Castilla y León**, **Castilla-La Mancha**, **Extremadura** y **Andalucía**. Estos individuos podrían ser aquellos que emigraron hace años y están regresando a sus lugares de origen para **jubilarse**.
+- **Castilla y León, Castilla-La Mancha, Extremadura y Andalucía**: Otro grupo significativo de personas emigra hacia estas regiones. Es probable que estos individuos sean aquellos que emigraron años atrás y ahora regresan a sus lugares de origen, especialmente para **jubilarse**.
 
-Por último, otra porción de la población se traslada al **extranjero** en busca de mejores **oportunidades laborales**.
+- **Destinos Internacionales**: Finalmente, una porción de la población se traslada al **extranjero** en busca de **mejores oportunidades laborales**, lo que refleja las tendencias migratorias hacia países con economías más desarrolladas o con sectores laborales en expansión.
 
 
 <br/><br/>
 
-En la siguiente **visualización**, se muestra cómo los **inmigrantes** se distribuyen por los diferentes **barrios** de la ciudad de **Madrid**, reflejando los movimientos y concentraciones más significativas de la población.
+### **Distribución de Inmigrantes por Barrios en Madrid (2023)**
 
----
+En la siguiente **visualización**, se muestra cómo los **inmigrantes** se distribuyen por los diferentes **barrios** de la ciudad de **Madrid**, reflejando las concentraciones y movimientos más significativos de la población. Este análisis ofrece una visión detallada de cómo los inmigrantes se agrupan en áreas específicas, lo que puede estar influenciado por factores como la disponibilidad de viviendas, el acceso a servicios o las oportunidades laborales en cada barrio.
 
 ```r
 
@@ -387,11 +380,10 @@ sankeyNetwork(Links=edges_d3, Nodes=nodes_d3, Source="from", Target="to",
 <img width="1260" alt="9 immigrants_destination_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/b62ee49c-92b7-41fd-a883-a527f35c0360">
 
 <br/><br/>
-
 Como era de esperar, la gran mayoría de los **inmigrantes** provienen de fuera de **España**, con otra gran parte originaria de la **Comunidad de Madrid**. En la siguiente **visualización**, podemos ver de qué otros **países** provienen en el año **2020**.
 <br/><br/>
 
----
+
 ### **Inmigrantes por nacionalidad**
 
 ```r
@@ -429,7 +421,6 @@ Analicemos los **nacimientos** por **año** de la **ciudad de Madrid** (2018-201
 
 <br/><br/>
 
----
 ### **Nacimientos por año**
 
 ```r
@@ -464,7 +455,6 @@ births %>%
 El número de **nacimientos** ha mantenido una **estabilidad constante** en los últimos años. Se observa un ligero predominio de los **nacimientos masculinos** sobre los **femeninos**. A continuación, profundizaremos en el análisis de los **nacimientos** por **distrito** en **2019**.
 <br/><br/>
 
----
 ### **Nacimientos por distrito (2017)**
 ```r
 # Nacimientos por distrito (2017)
@@ -494,7 +484,7 @@ births %>%
 <img width="1274" alt="12 births_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7e90dfaf-dc31-42dd-afcc-95614a4136e2">
 <br/><br/>
 
----
+
 ### **Nacimientos por barrio (2017)**
 ```r
 # Nacimientos por barrio (2017)
@@ -525,16 +515,14 @@ births %>%
 
 <br/><br/>
 
----
 
 # Muertes
 En esta sección, analizaremos la **distribución de género** de los **fallecimientos** en la **ciudad de Madrid** en **2019**.
 <br/><br/>
 
----
+
 ```r
 # Muertes en 2019
-
 deaths %>%
   group_by(Year, Gender) %>%
   summarise(Count=sum(Number)) %>%
@@ -564,12 +552,11 @@ deaths %>%
 Como era de esperar, el número de **fallecimientos masculinos** supera al de **fallecimientos femeninos**. Ahora, profundicemos en el análisis del número de **fallecidos** por **distrito** y **barrio** en la **ciudad de Madrid**.
 <br/><br/>
 
----
+
 ### **Muertes por distrito (2019)**
 
 ```r
 # Muertes por distrito (2019)
-
 deaths %>%
   filter(Year=="2019") %>%
   group_by(District, Gender) %>%
@@ -596,7 +583,7 @@ deaths %>%
 <img width="1274" alt="15 deaths_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/54aa32a7-aa4f-4977-a205-e63871821221">
 <br/><br/>
 
----
+
 ### **Muertes por barrio (2017)**
 ```r
 # Muertes por barrio (2017)
@@ -630,11 +617,11 @@ deaths %>%
 Este gráfico muestra las **20 principales causas de fallecimiento** en el año **2019**, destacándose entre ellas las **enfermedades respiratorias**, la **vejez** y las **enfermedades cardíacas**.
 <br/><br/>
 
----
+
 ### **Causas de muerte en Madrid (2019)**
 
 ```r
-# CCausas de muerte en Madrid (2019)
+# Causas de muerte en Madrid (2019)
 death_causes %>%
   filter(Year == "2019") %>%
   group_by(Cause) %>%
@@ -667,13 +654,10 @@ El **desempleo** representa uno de los mayores desafíos para los ciudadanos de 
 En el análisis mensual, se observa una ligera **disminución** del desempleo durante los meses de verano (**junio**, **julio**, **agosto** y **septiembre**) y en **diciembre**, probablemente influenciada por las **campañas navideñas**.
 
 <br/><br/>
+### **Desempleo por mes y año**
 
----
 ```r
-
-
 # Desempleo por mes y año (2021-2023)
-
 month_order <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
 unemployed <- unemployed %>%
@@ -698,9 +682,8 @@ ggplot(unemployed, aes(x = Month, y = Number, fill = factor(Year))) +
 # Nombres más frecuentes entre los madrileños
 
 En la bulliciosa **ciudad de Madrid**, los nombres más comunes entre **hombres** y **mujeres** incluyen **David**, **María**, **Javier**, **Carmen**, **Antonio** y **José**, cada uno de ellos con una rica **historia** y un sentido de **identidad** profundamente arraigado en la **cultura madrileña**. Estos nombres, llenos de **carácter** y **tradición**, han resonado en las calles de la **capital española** durante generaciones, formando parte de la **diversidad** y **vitalidad** de la comunidad madrileña.
-<br/><br/>
 
----
+<br/><br/>
 
 ```r
 #Nombre del wordcloud
@@ -723,18 +706,16 @@ wordcloud2(names_filtered, size = 1.5, fontFamily = "Oswald", color = "random-li
 <img width="1201" alt="19 name_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/94d317b4-cef5-44ba-95ca-b5d91904ecdd">
 
 # Apellidos más frecuentes
+
 <br/><br/>
 
----
 ```r
 
 #Apellidos wordcloud
-
 surname <- surname %>%
   group_by(Surname) %>%
   summarise(count = sum(Frecuency)) %>%
   arrange(desc(count))
-
 min_freq <- 10
 surname_filtered <- surname %>%
   filter(count >= min_freq)
@@ -748,7 +729,7 @@ wordcloud2(surname_filtered, size = 1.5, fontFamily = "Oswald", color = "random-
 # Nombres de bebes más frecuentes
 <br/><br/>
 
----
+
 ```r
 #  Nombres de bebes más wordcloud
 
@@ -770,8 +751,7 @@ wordcloud2(baby_names_filtered, size = 1.5, fontFamily = "Oswald", color = "rand
 
 <br/><br/>
 
----
 
-# References
+# Referencias
 
-This project is inspired by the work done by [Xavier](https://www.kaggle.com/xvivancos) on Kaggle about the city of Barcelona.
+Este proyecto está inspirado en el trabajo realizado por **[Xavier](https://www.kaggle.com/xvivancos)** en **Kaggle** sobre la **ciudad de Barcelona**.
