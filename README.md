@@ -419,8 +419,6 @@ immigrants_by_nationality %>%
 
 Analicemos los **nacimientos** por **año** de la **ciudad de Madrid** (2018-2019).
 
-<br/><br/>
-
 ### **Nacimientos por año**
 
 ```r
@@ -518,7 +516,6 @@ births %>%
 
 # Muertes
 En esta sección, analizaremos la **distribución de género** de los **fallecimientos** en la **ciudad de Madrid** en **2019**.
-<br/><br/>
 
 
 ```r
@@ -653,7 +650,6 @@ El **desempleo** representa uno de los mayores desafíos para los ciudadanos de 
 
 En el análisis mensual, se observa una ligera **disminución** del desempleo durante los meses de verano (**junio**, **julio**, **agosto** y **septiembre**) y en **diciembre**, probablemente influenciada por las **campañas navideñas**.
 
-<br/><br/>
 ### **Desempleo por mes y año**
 
 ```r
@@ -683,7 +679,6 @@ ggplot(unemployed, aes(x = Month, y = Number, fill = factor(Year))) +
 
 En la bulliciosa **ciudad de Madrid**, los nombres más comunes entre **hombres** y **mujeres** incluyen **David**, **María**, **Javier**, **Carmen**, **Antonio** y **José**, cada uno de ellos con una rica **historia** y un sentido de **identidad** profundamente arraigado en la **cultura madrileña**. Estos nombres, llenos de **carácter** y **tradición**, han resonado en las calles de la **capital española** durante generaciones, formando parte de la **diversidad** y **vitalidad** de la comunidad madrileña.
 
-<br/><br/>
 
 ```r
 #Nombre del wordcloud
@@ -707,7 +702,6 @@ wordcloud2(names_filtered, size = 1.5, fontFamily = "Oswald", color = "random-li
 
 # Apellidos más frecuentes
 
-<br/><br/>
 
 ```r
 
@@ -727,7 +721,6 @@ wordcloud2(surname_filtered, size = 1.5, fontFamily = "Oswald", color = "random-
 <img width="1194" alt="20 surname_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/20469004-e11c-4dae-aa2a-d53d7db048f0">
 
 # Nombres de bebes más frecuentes
-<br/><br/>
 
 
 ```r
