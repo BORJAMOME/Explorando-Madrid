@@ -11,6 +11,7 @@ En el presente proyecto, se llevará a cabo un análisis detallado de diversos a
 
 Para realizar este análisis, utilizamos datos del **Banco de Datos del Ayuntamiento de Madrid**, una fuente pública y confiable.
 
+
 # <sub> Carga de Datos </sub>
 
 El primer paso en este análisis consiste en cargar las bibliotecas necesarias y los conjuntos de datos que se utilizarán para llevar a cabo la investigación. A continuación, se presenta el código utilizado para importar las bibliotecas esenciales y leer los archivos CSV que contienen los datos relevantes para el estudio:
