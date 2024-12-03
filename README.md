@@ -85,8 +85,7 @@ population %>%
   )
 
 ```
-<img width="1266" alt="1 population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/13a8408b-e7b9-4dd3-b1a0-47a9261a3e16">
-<br/><br/>
+![1 population](https://github.com/user-attachments/assets/86264d98-f077-4af8-b229-125fc4d50428)
 
 La población de la ciudad de Madrid se mantiene estable en torno a los **6 millones de personas**. Se observa que la población femenina es ligeramente superior a la masculina, lo que refleja una tendencia demográfica constante durante los últimos años. Este patrón de estabilidad en la población es evidente, lo que nos lleva a centrarnos en un análisis más detallado del último año disponible, **2023**, para la siguiente visualización.
 
@@ -123,7 +122,8 @@ ggplot(data=age_population, aes(x=Age, fill=Gender)) +
     text = element_text(family = "Oswald", size = 15, color = "black") 
   )
 ```
-<img width="1274" alt="2 Age_population" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/8862e89c-8567-4e89-b480-7e890dc0c2b8">
+![2 Age_population](https://github.com/user-attachments/assets/26ecc0e6-7790-45f4-8544-c06fae346be3)
+
 <br/><br/>
 
 La distribución de la población se centra principalmente en el rango de **45 a 65 años**. Un hallazgo interesante es que la población masculina muestra una disminución considerable a partir del rango de **60-65 años**, mientras que en la población femenina esta disminución es **menos pronunciada**. Este patrón podría reflejar diferencias en la esperanza de vida y otros factores demográficos que afectan de manera distinta a ambos géneros.
@@ -165,8 +165,8 @@ population %>%
     text = element_text(family = "Oswald", size = 15, color = "black")
   )
 ````
-<img width="1270" alt="3 population_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/fb16c1f4-8ada-4112-920c-70d33adb48c3">
 <br/><br/>
+![3 population_district](https://github.com/user-attachments/assets/10ab5b72-f67a-4981-aa44-6b0811759b2e)
 
 **Carabanchel** lidera como el distrito más poblado de Madrid, seguido de cerca por **Fuencarral-El Pardo**, **Latina** y **Puente de Vallecas**. En contraste, **Barajas** es el distrito menos poblado. Observamos una tendencia en la que la población femenina supera a la masculina en todos los barrios, con la excepción de **Centro**. Vamos a profundizar más y desglosar la población por barrios, con más de **131** en total.
 
@@ -199,9 +199,8 @@ population %>%
     text = element_text(family = "Oswald", size = 6, color = "black")
   )
 ```
-<img width="1268" alt="4 population_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/0946fe58-b462-4d41-8830-30da24d1ca95">
 <br/><br/>
-
+![4 population_neighborhood](https://github.com/user-attachments/assets/431628d2-4233-447b-bf0f-6c19b01592f2)
 
 En los **50 principales barrios**, la población femenina es mayor que la masculina, excepto en **Embajadores**.
 
@@ -237,7 +236,8 @@ immigrants_emigrants_by_sex %>%
     axis.title.x = element_blank()
   )
 ````
-<img width="1271" alt="5 immi_emi_sex" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/d1c5dc6c-c9e2-4bed-a6f6-524f27913ef7">
+![5 immi_emi_sex](https://github.com/user-attachments/assets/9faea70f-65e9-41d7-8265-f0b7cc77f6da)
+
 <br/><br/>
 
 
@@ -282,7 +282,8 @@ ggplot(data=immigrants_emigrants_by_age_2021, aes(x=Age, fill=`Immigrants/Emigra
   )
 
 ```
-<img width="1267" alt="6 immi_emi_age" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/0512b055-d29d-4ff6-9704-510c5bc8d2aa">
+![6 immi_emi_age](https://github.com/user-attachments/assets/e362ad81-68b1-4603-b4a6-ed0eb23bd8f3)
+
 <br/><br/>
 
 Como es evidente a partir de los datos, cerca de **30,000 inmigrantes** de **25 a 29 años** llegaron en **2021**. En términos de **emigración**, surgen **grupos de edad** distintos: uno entre **25 y 39 años**, y otro entre las personas de **65 años en adelante**. Esto sugiere un desafío para los **jóvenes** en la obtención de empleo en Madrid, mientras que los residentes mayores optan por **jubilación** en otros lugares.
@@ -414,7 +415,7 @@ immigrants_by_nationality %>%
   ) + 
   coord_flip()
 ````
-<img width="1260" alt="10 immigrants_nationality" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/cbb4d93b-8944-4247-9a29-837ce258a016">
+![10 emigrants_destination](https://github.com/user-attachments/assets/62fa3415-3904-4a54-9b32-1b2e9f57a766)
 
 # Nacimientos
 
@@ -448,7 +449,8 @@ births %>%
     text = element_text(family = "Oswald", size = 15, color = "black") 
   )
 ````
-<img width="1275" alt="11 births_by_year" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/aa9b04ff-d6c0-461d-b704-57a72cafd3bb">
+![11 births_by_year](https://github.com/user-attachments/assets/ce2ca71a-5692-496e-baea-e51b6e6a7cac)
+
 <br/><br/>
 
 El número de **nacimientos** ha mantenido una **estabilidad constante** en los últimos años. Se observa un ligero predominio de los **nacimientos masculinos** sobre los **femeninos**. A continuación, profundizaremos en el análisis de los **nacimientos** por **distrito** en **2019**.
@@ -480,7 +482,8 @@ births %>%
   ) + 
   coord_flip()
 ````
-<img width="1274" alt="12 births_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7e90dfaf-dc31-42dd-afcc-95614a4136e2">
+![12 births_by_district](https://github.com/user-attachments/assets/afd57c4a-3d8a-4735-8ca9-4d8ca167fc8e)
+
 <br/><br/>
 
 
@@ -510,7 +513,7 @@ births %>%
   ) + 
   coord_flip()
 ````
-<img width="1267" alt="13 births_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/675edea7-666a-4dd7-a46c-31c4f457c805">
+![13 births_by_neighborhood](https://github.com/user-attachments/assets/e46c79ff-edd4-4bc1-8317-ae80d03177c5)
 
 <br/><br/>
 
@@ -544,7 +547,8 @@ deaths %>%
     text = element_text(family = "Oswald", size = 15, color = "black") 
   )
 ```
-<img width="1274" alt="14 deaths_by_year" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/30885a1f-1f1b-40cb-aa49-11fe7caf224d">
+![14 deaths_by_year](https://github.com/user-attachments/assets/8b8c06e2-9ae8-49aa-8323-20797b38a786)
+
 <br/><br/>
 
 Como era de esperar, el número de **fallecimientos masculinos** supera al de **fallecimientos femeninos**. Ahora, profundicemos en el análisis del número de **fallecidos** por **distrito** y **barrio** en la **ciudad de Madrid**.
@@ -578,7 +582,8 @@ deaths %>%
   ) + 
   coord_flip()
 ````
-<img width="1274" alt="15 deaths_by_district" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/54aa32a7-aa4f-4977-a205-e63871821221">
+![15 deaths_by_district](https://github.com/user-attachments/assets/10b80275-ebf9-4962-b8e4-983bd29d9e7b)
+
 <br/><br/>
 
 
@@ -609,7 +614,7 @@ deaths %>%
   ) + 
   coord_flip()
 ````
-<img width="1275" alt="16 deaths_by_neighborhood" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/ee5444f4-4a8d-4047-8849-92d7ffbcf082">
+![16 deaths_by_neighborhood](https://github.com/user-attachments/assets/4dd93eae-65fe-4e8b-ac51-889efde09dce)
 <br/><br/>
 
 Este gráfico muestra las **20 principales causas de fallecimiento** en el año **2019**, destacándose entre ellas las **enfermedades respiratorias**, la **vejez** y las **enfermedades cardíacas**.
@@ -644,7 +649,7 @@ death_causes %>%
   ) + 
   coord_flip()
 ```
-<img width="1276" alt="17 cause_of_death" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/06837ef6-3ef0-4127-9b92-a46031463c9f">
+![17 cause_of_death](https://github.com/user-attachments/assets/925bd5e0-442b-4dda-8124-fa23e3e6631a)
 
 # Desempleo 
 El **desempleo** representa uno de los mayores desafíos para los ciudadanos de **Madrid**. Como se puede observar, ha habido una **reducción significativa** del desempleo desde **2021** hasta **2022**, resultado tanto de la disminución de la **pandemia** como de la **reestructuración económica**.
@@ -674,7 +679,7 @@ ggplot(unemployed, aes(x = Month, y = Number, fill = factor(Year))) +
     axis.text.x = element_text(angle = 45, hjust = 1) 
   )
 ````
-<img width="1272" alt="18 unemployed" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/21fb7582-6b01-411b-8478-689e441a3a7c">
+![18 unemployed](https://github.com/user-attachments/assets/6b3929c6-2003-4aae-bb1e-a7569d1eacc4)
 
 # Nombres más frecuentes entre los madrileños
 
@@ -699,7 +704,7 @@ wordcloud2(names_filtered, size = 1.5, fontFamily = "Oswald", color = "random-li
            backgroundColor = "#f6f0ec", rotateRatio = 0.3, minRotation = -pi/4, maxRotation = pi/4,
            gridSize = 10, minSize = 10, shuffle = TRUE)
 ```
-<img width="1201" alt="19 name_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/94d317b4-cef5-44ba-95ca-b5d91904ecdd">
+![19 name_wordcloud](https://github.com/user-attachments/assets/ff9ec008-0c37-4cfc-ba93-94f921f8e187)
 
 # Apellidos más frecuentes
 
@@ -719,7 +724,7 @@ wordcloud2(surname_filtered, size = 1.5, fontFamily = "Oswald", color = "random-
            backgroundColor = "#f6f0ec", rotateRatio = 0.3, minRotation = -pi/4, maxRotation = pi/4,
            gridSize = 10, minSize = 10, shuffle = TRUE)
 ````
-<img width="1194" alt="20 surname_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/20469004-e11c-4dae-aa2a-d53d7db048f0">
+![20 surname_wordcloud](https://github.com/user-attachments/assets/ea318c85-a342-4fae-ba7d-5cd05d29ec77)
 
 # Nombres de bebes más frecuentes
 
@@ -741,7 +746,7 @@ wordcloud2(baby_names_filtered, size = 1.5, fontFamily = "Oswald", color = "rand
            gridSize = 10, minSize = 10, shuffle = TRUE)
 
 ```
-<img width="1201" alt="21 baby_names_wordcloud" src="https://github.com/BORJAMOME/Madrid_I/assets/19588053/7d0c46ec-b273-4146-8cd2-991371d8ab63">
+![21 baby_names_wordcloud](https://github.com/user-attachments/assets/2447ab61-fdc4-4730-9eda-ed9069ad6a75)
 
 <br/><br/>
 
