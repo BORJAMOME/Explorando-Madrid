@@ -1,6 +1,7 @@
-# Explorando Madrid: Un análisis basado en datos con R 
+# Radiografía de Madrid: Análisis de Población, Economía y Sociedad con R
 
-## **Introducción**
+  <img src="https://img.shields.io/badge/Language-R-blue" alt="Language">
+
 En el presente proyecto, se llevará a cabo un análisis detallado de diversos aspectos clave de la ciudad de **Madrid**, con el propósito de obtener una comprensión más profunda de su dinámica social, económica y demográfica. A través de este análisis, abordaremos temas fundamentales como los siguientes:
 
 - **Evolución de la población:** Análisis de los cambios en la población a lo largo del tiempo.
@@ -9,7 +10,7 @@ En el presente proyecto, se llevará a cabo un análisis detallado de diversos a
 - **Tasas de desempleo:** Evaluación de la situación laboral de los residentes.
 - **Nombres más comunes entre los residentes:** Identificación de los nombres más frecuentes entre los habitantes de Madrid.
 
-Para realizar este análisis, utilizamos datos del **Banco de Datos del Ayuntamiento de Madrid**, una fuente pública y confiable.
+Para realizar este análisis, he utilizado los datos del **Banco de Datos del Ayuntamiento de Madrid**.
 
 
 # <sub> Carga de Datos </sub>
